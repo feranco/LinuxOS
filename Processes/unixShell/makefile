@@ -1,7 +1,7 @@
 # compiler
 CXX=g++
 CXXFLAGS=-g -std=c++14 -Wall -Werror
-BIN=test
+BIN=shell
 
 SRC=$(wildcard *.cpp)
 OBJ=$(SRC:%.cpp=%.o)
