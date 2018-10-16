@@ -1,0 +1,79 @@
+#include <iostream>
+#include <sstream>
+#include <string>
+#include <vector>
+#include <unistd.h>
+#include <fstream>
+#define MAX_LINE 80 /* The maximum length command */
+
+using std::cin;
+using std::cout;
+using std::getline;
+using std::string;
+using std::vector;
+
+int main(void)
+{
+  //const char *args[MAX_LINE/2 + 1]; /* command line arguments */
+  int should_run = 1; /* flag to determine when to exit program */
+  vector<string> userCommand;
+  while (should_run) {
+  
+    cout << "osh>";
+    string s;
+    getline(cin, s, ' ');
+    cout << s << std::endl;
+
+    /*
+    string s;
+    while (cin >> s) {
+      userCommand.push_back(s);
+    }
+    */
+
+    for (size_t i = 0; i < userCommand.size(); ++i) {
+      cout << userCommand[i] << "\n";
+    }
+#if 0
+    //child
+    std::ofstream myfile;
+    myfile.open ("/home/parallels/Desktop/example.txt");
+      
+      
+    for (size_t i = 0; i < userCommand.size(); ++i) {
+      cout << i;
+      args[i] = userCommand[i].c_str();
+      myfile << i << " " << args[i] << "\n";
+    }
+    myfile.close();
+
+    pid_t pid;
+
+    pid = fork();
+
+    if (pid > 0) {
+      //parent
+      wait();
+    }
+    else if (pid == 0) {
+      //child
+      std::ofstream myfile;
+      myfile.open ("/home/parallels/Desktop/example.txt");
+      
+      
+      for (size_t i = 0; i < userCommand.size(); ++i) {
+	args[i] = userCommand[i].c_str();
+	myfile << i << " " << args[i] << "\n";
+      }
+      myfile.close();
+    }
+#endif
+    
+    /**
+     * After reading user input, the steps are:
+     * (1) fork a child process using fork()
+     * (2) the child process will invoke execvp()
+     * (3) if command included &, parent will invoke wait() */
+  }
+  return 0;
+}
