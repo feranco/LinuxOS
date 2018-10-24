@@ -1,0 +1,10 @@
+#include <bitset>
+
+class PidManager {
+public:
+  
+private:
+  const int minPid = 300;
+  const int maxPid = 5000;
+  std::bitset<maxPid> pidState;
+};
