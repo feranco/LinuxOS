@@ -5,19 +5,23 @@ public:
   int allocatePid (void);
   void releasePid (unsigned int pid);
 private:
-  const unsigned int minPid = 300;
-  const unsigned int maxPid = 5000;
-  const unsigned int pidRangeSize = maxPid - minPid;
+  static const unsigned int minPid = 300;
+  static const unsigned int maxPid = 5000;
+  static const unsigned int pidRangeSize = maxPid - minPid;
   std::bitset<pidRangeSize> pidState;
 };
 
 int PidManager::allocatePid (void) {
   for (unsigned int i = 0; i < pidRangeSize; ++i) {
-    if (!pidState.test(i)) return i + minPid;
+    if (!pidState.test(i)) {
+      pidState.set(i);
+      return i + minPid;
+    }
   }
   return -1;
 }
 
 void PidManager::releasePid (unsigned int pid) {
-  pidState.reset(pid-minPd);
+  pidState.reset(pid-minPid);
 }
+

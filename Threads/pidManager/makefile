@@ -1,7 +1,7 @@
 # compiler
 CXX=g++
 CXXFLAGS=-g -std=c++14 -Wall -Werror 
-BIN=sumOfInt
+BIN=testPidManager
 
 SRC=$(wildcard *.cpp)
 OBJ=$(SRC:%.cpp=%.o)
